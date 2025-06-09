@@ -16,15 +16,23 @@ function Profile() {
   });
 
   useEffect(() => {
+    const ourRequest = Axios.CancelToken.source();
+    // Create a cancel token to cancel the request if the component unmounts
+
     async function fetchData() {
       try {
-        const response = await Axios.post(`/profile/${username}`, { token: appState.user.token });
+        const response = await Axios.post(`/profile/${username}`, { token: appState.user.token }, { cancelToken: ourRequest.token });
+        // Assuming the response data structure matches the expected profileData structure
         setProfileData(response.data);
       } catch (error) {
         console.log("Error fetching profile data:", error);
       }
     }
     fetchData();
+    return () => {
+      ourRequest.cancel();
+      // Cleanup function if needed, e.g., to cancel requests
+    };
   }, []);
 
   return (

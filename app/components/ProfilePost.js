@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Axios from "axios";
+import LoadingDotsIcon from "./LoadingDotsIcon";
 
 function ProfilePost() {
   const { username } = useParams();
@@ -8,10 +9,13 @@ function ProfilePost() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    const ourRequest = Axios.CancelToken.source();
+    // Create a cancel token to cancel the request if the component unmounts
+
     async function fetchPosts() {
       try {
-        const response = await Axios.get(`/profile/${username}/posts`);
-        setPosts(response.data); // Assuming the response contains an array of posts
+        const response = await Axios.get(`/profile/${username}/posts`, { cancelToken: ourRequest.token });
+        setPosts(response.data);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -19,10 +23,14 @@ function ProfilePost() {
     }
 
     fetchPosts();
+    return () => {
+      ourRequest.cancel();
+      // Cleanup function if needed, e.g., to cancel requests
+    };
   }, []);
 
   if (isLoading) {
-    return <div className="loader">Loading...</div>;
+    return <LoadingDotsIcon />;
   }
 
   return (

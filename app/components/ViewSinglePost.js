@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Page from "./Page";
 import Axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import LoadingDotsIcon from "./LoadingDotsIcon";
 
 function ViewSinglePost() {
   const { id } = useParams();
@@ -9,23 +10,29 @@ function ViewSinglePost() {
   const [post, setPost] = useState();
 
   useEffect(() => {
+    const ourRequest = Axios.CancelToken.source();
+    // Create a cancel token to cancel the request if the component unmounts
+
     async function fetchPost() {
       try {
-        const response = await Axios.get(`/post/${id}`);
+        const response = await Axios.get(`/post/${id}`, { cancelToken: ourRequest.token });
         setPost(response.data);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     }
-
     fetchPost();
+    return () => {
+      ourRequest.cancel();
+      // Cleanup function to cancel the request if the component unmounts
+    };
   }, []);
 
   if (isLoading) {
     return (
       <Page title="...">
-        <div>Loading...</div>
+        <LoadingDotsIcon />
       </Page>
     );
   }
