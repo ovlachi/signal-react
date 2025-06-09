@@ -1,6 +1,7 @@
 {
   "name": "complex-react-app",
   "version": "1.0.0",
+  "homepage": "https://github.com/ovlachi/signal-react",
   "description": "",
   "main": "test.js",
   "scripts": {
