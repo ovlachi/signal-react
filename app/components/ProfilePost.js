@@ -10,7 +10,6 @@ function ProfilePost() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        // Simulate an API call
         const response = await Axios.get(`/profile/${username}/posts`);
         setPosts(response.data); // Assuming the response contains an array of posts
         setIsLoading(false);
