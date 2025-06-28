@@ -7,7 +7,7 @@ import LoadingDotsIcon from "./LoadingDotsIcon";
 import StateContext from "../StateContext";
 import DispatchContext from "../DispatchContext";
 
-function ViewSinglePost() {
+function EditPost() {
   const appState = React.useContext(StateContext);
   const appDispatch = React.useContext(DispatchContext);
   // Access the global state and dispatch function from context
@@ -139,4 +139,4 @@ function ViewSinglePost() {
   );
 }
 
-export default ViewSinglePost;
+export default EditPost;
