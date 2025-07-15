@@ -1,4 +1,4 @@
-This is a (In Progress) web application built completly in React.JS and Next.JS. 
+This is a custom Webpack React project (not Create React App (In Progress) built completly in ReactJS and NextJS. 
 
 It covers all aspects and features of how to create a modern React based Frontend application built with reusable components. Athentication is handled with MongoDB.
 
