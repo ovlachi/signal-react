@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import LoadingDotsIcon from "./LoadingDotsIcon";
 import ReactMarkdown from "react-markdown";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import NotFound from "./NotFound"; // Import NotFound component to handle cases where the post is not found
 
 function ViewSinglePost() {
   const { id } = useParams();
@@ -31,6 +32,10 @@ function ViewSinglePost() {
     };
   }, []);
 
+  if (!post && !isLoading) {
+    return <NotFound />; // Render NotFound component if the post is not found and not loading
+  }
+
   if (isLoading) {
     return (
       <Page title="...">
@@ -48,11 +53,11 @@ function ViewSinglePost() {
         <div className="d-flex justify-content-between">
           <h2>{post.title}</h2>
           <span className="pt-2">
-            <Link to={`/post/${post._id}/edit`} data-tooltip-content="Edit" data-tooltip-id="edit" className="text-primary mr-2">
+            <Link to={`/post/${post._id}/edit`} data-tooltip-content="Edit Post" data-tooltip-id="edit" className="text-primary mr-2">
               <i className="fas fa-edit"></i>
             </Link>
             <ReactTooltip id="edit" className="custom-tooltip" />{" "}
-            <Link to="#" data-tooltip-content="Delete" data-tooltip-id="delete" className="delete-post-button text-danger">
+            <Link to="#" data-tooltip-content="Delete Post" data-tooltip-id="delete" className="delete-post-button text-danger">
               <i className="fas fa-trash"></i>
             </Link>
             <ReactTooltip id="delete" className="custom-tooltip" />

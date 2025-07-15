@@ -20,7 +20,9 @@ import ViewSinglePost from "./components/ViewSinglePost";
 import FlashMessages from "./components/FlashMessages";
 import Profile from "./components/Profile";
 import EditPost from "./components/EditPost";
+import NotFound from "./components/NotFound";
 
+// Main component that sets up the application
 function Main() {
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("complexappToken")),
@@ -81,6 +83,8 @@ function Main() {
             <Route path="post/:id/edit" element={<EditPost />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="*" element={<NotFound />} />
+            {/* Catch-all route for NotFound component */}
           </Routes>
           <Footer />
         </BrowserRouter>
