@@ -25,32 +25,32 @@ Key Technologies Used
 - Context API: For sharing state and dispatch functions across components.
 - Webpack: For bundling and serving the app.
 
-State Management
+<strong>State Management</strong>
 
 - Uses useImmerReducer for global state (login status, user info, flash messages).
 - State and dispatch are provided via React Context to all components.
 - Actions like "login", "logout", and "flashMessage" update state immutably.
 
-Routing
+<strong>Routing</strong>
 
 - Uses BrowserRouter and <Routes> for navigation.
 - Routes include home, profile, create/edit/view post, about, terms, and not found.
 
-Authentication
+<strong>Authentication</strong>
 
 - Login and registration handled via Axios requests to the backend.
 - User info and token are stored in localStorage and global state.
 
-API Communication
+<strong>API Communication</strong>
 
 - Axios is configured with a base URL for the backend.
 - All data (posts, profiles, authentication) is fetched or updated via Axios.
 
-Validation
+<strong>Validation</strong>
 
 - Form validation for post creation/editing is handled live as the user types, using reducer actions.
 
-Build & Deployment
+<strong>Build & Deployment</strong>
 
 - Webpack bundles the app.
 
