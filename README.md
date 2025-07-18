@@ -16,7 +16,7 @@ This project is in Progress so more updates will follow...
 
 Key Technologies Used
 
-React:
+<strong>React:</strong>
 
 - For building UI components.
 - React Router: For client-side routing.
