@@ -1,4 +1,4 @@
-This is a custom Webpack React project (not Create React App (In Progress) built completly in ReactJS and NextJS. 
+This is a custom Webpack React project (not Create React App built completly in ReactJS and NextJS (in progress). 
 
 It covers all aspects and features of how to create a modern React based Frontend application built with reusable components. Athentication requests to MongoDB is handled with Axios.
 
